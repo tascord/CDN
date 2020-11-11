@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/raw/style.css">
+
+</head>
+<body>
+
+    <script>
+
+        let file = '<%- path %>'
+
+        document.title = file + ' -- CDN';
+
+        switch(file.split('.')[file.split('.').length - 1]) {
+
+            case "png":
+            case "jpeg":
+            case "gif":
+
+                console.log(`Loading image...`);
+
+                {
+
+                    let elem = document.createElement('img');
+                    document.body.appendChild(elem);
+
+                    elem.src = `${window.location.origin}/raw/${file}`;
+
+                }
+
+            break;
+
+            default:
+
+                console.log(`Loading as text...`);
+
+                {
+
+                    let elem = document.createElement('p');
+                    document.body.appendChild(elem);
+
+                    elem.style.whiteSpace = 'pre-wrap';
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = () => { elem.innerText = xhr.responseText; };
+                    xhr.open('GET', `${window.location.origin}/raw/${file}`);
+                    xhr.send();
+
+                }
+
+            break;
+
+        }
+
+    </script>
+
+</body>
+</html>
