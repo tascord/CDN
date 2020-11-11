@@ -15,10 +15,12 @@ body {
 	justify-content: center;
 	align-items: center;
 
-	font-family: 'Nova Mono', monospace;
-
 	overflow: hidden;
 
+}
+
+* {
+	font-family: 'Nova Mono', monospace;
 }
 
 //
@@ -45,12 +47,45 @@ p {
 
 //
 
+a {
+
+	position: absolute;
+
+	bottom: 2.5%;
+	right: 2.5%;
+
+	z-index: 10;
+	
+	color: white;
+	font-size: 2.5vmin;
+	
+	background: none;
+	border: none;
+	outline: none;
+	user-select: none;
+	text-decoration: none;
+
+	border-radius: 50px;	
+
+	cursor: pointer;
+
+	transition: color 0.2s ease-in-out;
+	&:active {
+
+		color: rgb(255, 0, 106);
+
+	}
+
+}
+
+//
+
 .glitch {
 
 	position: relative;
 	color: #fff;
 	font-weight: 700;
-	font-size: 5vmin;
+	font-size: 3vw;
 	transform: scale(2);
 	padding: 30px;
 	letter-spacing: 2px;
@@ -72,7 +107,7 @@ p {
 
 	&::before {
 		left: 3px;
-		text-shadow: -2px 0 rgb(255, 151, 255);
+		text-shadow: -2px 0 rgb(255, 0, 106);
 		animation: glitch-1 2s linear infinite reverse;
 	}
 
@@ -80,11 +115,15 @@ p {
 	&:after {
 
 		left: -3px;
-		text-shadow: -2px 0 rgb(145, 248, 255);
+		text-shadow: -2px 0 rgb(0, 174, 255);
 		animation: glitch-2 2s linear infinite reverse;
 
 	}
 
+}
+
+h2 {
+	user-select: none;
 }
 
 

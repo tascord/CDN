@@ -15,8 +15,11 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: 'Nova Mono', monospace;
   overflow: hidden;
+}
+
+* {
+  font-family: 'Nova Mono', monospace;
 }
 
 img {
@@ -33,11 +36,36 @@ p {
   overflow-x: hidden;
 }
 
+a {
+  position: absolute;
+  bottom: 2.5%;
+  right: 2.5%;
+  z-index: 10;
+  color: white;
+  font-size: 2.5vmin;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+a:active {
+  color: #ff006a;
+}
+
 .glitch {
   position: relative;
   color: #fff;
   font-weight: 700;
-  font-size: 5vmin;
+  font-size: 3vw;
   -webkit-transform: scale(2);
           transform: scale(2);
   padding: 30px;
@@ -59,14 +87,21 @@ p {
 
 .glitch::before {
   left: 3px;
-  text-shadow: -2px 0 #ff97ff;
+  text-shadow: -2px 0 #ff006a;
   animation: glitch-1 2s linear infinite reverse;
 }
 
 .glitch:after {
   left: -3px;
-  text-shadow: -2px 0 #91f8ff;
+  text-shadow: -2px 0 #00aeff;
   animation: glitch-2 2s linear infinite reverse;
+}
+
+h2 {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 @-webkit-keyframes glitch-1 {

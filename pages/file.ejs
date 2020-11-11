@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>...</title>
 
-    <link rel="stylesheet" href="/raw/style.css">
+        <link rel="stylesheet" href="/raw/style.css">
 
-</head>
+        <meta name="language" content="English">
+        <meta name="author" content="tascord">
+        <meta name="theme-color" content="#000000">
+        <meta property="og:site_name" content="cdn.tascord.ai">
+        <meta property="og:url" content="https://cdn.tascord.ai/<%- path %>">
+        <meta property="og:title" content="Viewing '<%- path %>'.">
+        <meta property="og:description" content="Click to view the document of this text file.">
+
+        <% if (path.match(/\.(png|jp(e|)g|gif)$/i)) { %>
+            <meta property="og:image" content="/raw/<%- path %>>">
+        <% } %>
+
+    </head>
 <body>
-
+    
     <script>
 
-        let file = '<%- path %>'
+        let file = '<%- path %>';
+        let remote_location = `${window.location.origin}/raw/${file}`;
 
-        document.title = file + ' -- CDN';
+        document.title = file + ' — CDN';
 
-        switch(file.split('.')[file.split('.').length - 1]) {
+        {
+
+            // Download Button
+            let elem = document.createElement('a');
+            document.body.appendChild(elem);
+
+            elem.innerText = "Download";
+            elem.href = remote_location;
+            elem.download = file;
+
+
+        }
+
+        switch(file.split('.')[file.split('.').length - 1].toLowerCase()) {
 
             case "png":
             case "jpeg":
@@ -29,7 +57,7 @@
                     let elem = document.createElement('img');
                     document.body.appendChild(elem);
 
-                    elem.src = `${window.location.origin}/raw/${file}`;
+                    elem.src = remote_location;
 
                 }
 
@@ -48,7 +76,7 @@
 
                     let xhr = new XMLHttpRequest();
                     xhr.onload = () => { elem.innerText = xhr.responseText; };
-                    xhr.open('GET', `${window.location.origin}/raw/${file}`);
+                    xhr.open('GET', remote_location);
                     xhr.send();
 
                 }
