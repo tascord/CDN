@@ -1,6 +1,6 @@
 const a = require('express')();
 a.set('view engine', 'ejs');
-a.listen(process.env.port || 3000, () => console.log('Started!'));
+a.listen(process.env.PORT || 3000, () => console.log('Started!'));
 
 const f = require('fs');
 const m = require('multiparty');
