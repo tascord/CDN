@@ -3,9 +3,7 @@ a.set('view engine', 'ejs');
 a.listen(3000, () => console.log('Started!'));
 
 const f = require('fs');
-const m = require('multer');
-
-const u = m({ storage: require('./storage')({ destination: (r, f, c) => { c(null, 'files'); } }) })
+const m = require('multiparty');
 
 const token = process.env.TOKEN || 'something secure lol';
 
@@ -34,9 +32,25 @@ a.get('*', (i, o) => {
 
 //
 
-a.post('/up', u.single('file'), (i, o) => {
+a.post('/up', (i, o) => {
 
-    console.log('okiedokei');
-    o.status(204).end();
+    let form = new m.Form();
+    form.parse(i, (e, a, d) => {
+
+        if(e)           return o.redirect(`/upload?error=${e}`);
+        if(!d.file)     return o.redirect(`/upload?error=No \'file\' field.`);
+        if(!d.file[0])  return o.redirect(`/upload?error=No file provided in field \'file\.`);
+        if(!a.token)    return o.redirect(`/upload?error=No \'token\' field provided.`)
+        if(!a.token[0]) return o.redirect(`/upload?error=No data provided in field \'token\'.`)
+
+        if(a.token[0] !== token) return o.redirect(`/upload?error=Invalid token provided.`);
+
+        let name = `${Date.now()}-${d.file[0].originalFilename}`;
+
+        f.copyFileSync(d.file[0].path, `${__dirname}/files/${name}`);
+        o.redirect(`/upload?code=${name}`);
+
+
+    })
 
 });

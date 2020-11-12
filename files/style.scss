@@ -47,7 +47,7 @@ p {
 
 //
 
-a {
+a, button, input[type="file"]::-webkit-file-upload-button {
 
 	position: absolute;
 
@@ -74,6 +74,65 @@ a {
 
 		color: rgb(255, 0, 106);
 
+	}
+
+}
+
+//
+
+form {
+
+
+	sub {
+		width: 100%;
+		
+		margin-bottom: 2vmin;
+		margin-top: 0.5vmin;
+		
+		font-size: 3vmin;
+		text-align: left;
+
+		color: rgb(255, 0, 106);
+
+	}
+
+	div {
+		display: flex;
+		flex-direction: column;
+		// align-items: center;
+		justify-content: center;
+		padding-left: 0.25vmin;
+		padding-bottom: 2vmin;
+	}
+
+	button {
+		margin-top: 2vmin;
+		position: relative;
+	}
+
+	input[type="text"] {
+	
+		font-size: 3vmin;
+		background: none;
+
+		outline: none;
+		border: none;
+
+		color: white;
+		border-bottom: 2px solid white;
+
+		transition: 0.25s ease-in-out border;
+		&:focus {
+			border-color: rgb(255, 0, 106);
+		}
+
+		
+		
+	}
+
+	input[type="file"]::-webkit-file-upload-button {
+		position: relative;
+		margin-left: 0.5vmin;
 	}
 
 }

@@ -26,6 +26,8 @@
     
     <script>
 
+        if(window.location.search) window.location.search = '';
+
         let file = '<%- path %>';
         let remote_location = `${window.location.origin}/raw/${file}`;
 
@@ -48,6 +50,7 @@
 
             case "png":
             case "jpeg":
+            case "jpg":
             case "gif":
 
                 console.log(`Loading image...`);
